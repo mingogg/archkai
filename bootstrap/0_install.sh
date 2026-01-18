@@ -7,15 +7,17 @@ HOSTNAME=${HOSTNAME:-emptyHostName}
 USERNAME=${USERNAME:-emptyUserName}
 
 read -s -p "Introduce ROOT password: " ROOT_PASS
-echo
+echo ""
 read -s -p "Confirm ROOT password: " ROOT_PASS_CONFIRM
-echo
+echo ""
+echo ""
 [[ "$ROOT_PASS" != "$ROOT_PASS_CONFIRM" ]] && exit 1
 
 read -s -p "Introduce USER password: " USER_PASS
-echo
+echo ""
 read -s -p "Confirm USER password: " USER_PASS_CONFIRM
-echo
+echo ""
+echo ""
 [[ "$USER_PASS" != "$USER_PASS_CONFIRM" ]] && exit 1
 
 echo "Syncing clock..."
@@ -86,5 +88,6 @@ EOF
 echo "----------------------------------------------------"
 echo "LEVEL 0 PROCESS IS FINISHED."
 echo "Host set as: $HOSTNAME"
+echo "User set as: $USERNAME"
 echo "You can now execute: umount -R /mnt && reboot"
 echo "----------------------------------------------------"
