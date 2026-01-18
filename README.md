@@ -19,7 +19,7 @@ Instead, it provides:
 - A stylized system **without hiding how things work** (or, at least, easy to find how)
 
 You decide:
-- What gets installed (by default, it comes with my own personal apps. They're not that many)
+- What gets installed (by default, it comes with my curated set of personal apps)
 - What stays minimal
 - What gets themed
 - What evolves over time
@@ -49,7 +49,7 @@ Each stage is intentionally separated so you can:
 ### 1. Create Partitions
 #### Small guide example — adapt it to your needs.
 
-- Execute `cfdisk`
+- Execute ```cfdisk```
 - Select partition table type: `gpt`
 
 ##### Select the disk you want to partition
@@ -71,27 +71,27 @@ Assume the following mapping:
 - `ROOT → /dev/sda2`
 
 #### Execute:
-- `mkfs.fat -F32 /dev/sda1`
-- `mkfs.ext4 /dev/sda2`
+- ```mkfs.fat -F32 /dev/sda1```
+- ```mkfs.ext4 /dev/sda2```
 
 ---
 
 ### 3. Mount Partitions
 Using the same partition examples as above, execute:
 
-- `mount /dev/sda2 /mnt`
-- `mkdir -p /mnt/boot`
-- `mount /dev/sda1 /mnt/boot`
+- ```mount /dev/sda2 /mnt```
+- ```mkdir -p /mnt/boot```
+- ```mount /dev/sda1 /mnt/boot```
 
 ---
 
 ### 4. Clone the Repository from the Live ISO
 
 #### Execute the following commands:
-- `pacman -Sy`
-- `git clone https://github.com/mingogg/archkai`
-- `cd archkai/bootstrap`
-- `./0_install.sh`
+- ```pacman -Sy```
+- ```git clone https://github.com/mingogg/archkai```
+- ```cd archkai/bootstrap```
+- ```./0_install.sh```
 
 #### During execution, you will be prompted for:
 - `HOSTNAME`
@@ -114,150 +114,137 @@ After rebooting, you will be able to log in with your user.
 
 After logging in, execute the following commands one last time:
 
-- `git clone https://github.com/mingogg/archkai`
-- `cd archkai/bootstrap`
-- `./archkai.sh`
+- ```git clone https://github.com/mingogg/archkai```
+- ```cd archkai/bootstrap```
+- ```./archkai.sh```
 
 ##### Note:
 You will be asked for your user password multiple times during this process.
 
 Once the installation finishes, reboot and enjoy your new system.
 
-
-Bootstrap handles:
-Application installation
-Window manager / desktop setup
-Themes
-Utilities
-Optional helpers (TUI tools, scripts)
+### Bootstrap Handles
+##### Application installation | Desktop setup | Themes | Utilities | Optional helpers
 
 This step is fully editable.
 
-Installed Applications
+---
 
+#### Installed Applications
 This installer includes a curated set of applications.
 
-To review or modify them:
+##### To review or modify them:
+Open `bootstrap/install_apps.sh`
 
-Open the apps/ or bootstrap/ directory
+Each package group is explicitly declared.  
+You can add or remove packages freely.  
+###### Nothing is hidden. Nothing is auto-installed without being listed.
 
-Each package group is explicitly declared
+---
 
-You can add or remove packages freely
-
-Nothing is hidden.
-Nothing is auto-installed without being listed.
-
-Built-in Bash Utilities
+### Built-in Bash Utilities
 
 This project includes several helper functions designed around real usage.
 
-Safe Power Functions
+#### Aliases that simplify directory and file access
+- `od` → OpenDirectory: searches for directories by partial match and opens them.  
+  Example: `od kai` → opens `archKai` if found.  
+  If multiple matches exist, you can select one via an index.  
+  **Note:** always searches from `/home`, so you can use it from anywhere.
+- `of` → OpenFile: same as OpenDirectory but for files.  
+  **Note:** searches from the *root of your current folder*.  
+  Best used from `/home` for predictable behavior.
 
-od → powerOffSafeBrave
+---
 
-of → rebootSafeBrave
+#### Safe Power Functions
+- `safeBravePoweroff` & `safeBraveReboot`
 
-These functions:
+These are integrated with all menus and available as aliases for `poweroff` and `reboot`.  
+When used, they:
+- Detect if Brave is running
+- Close it cleanly before shutdown or reboot
+###### This allows Brave to restore all tabs automatically on next startup, avoiding manual “Restore Pages” prompts and session corruption.
 
-Detect if Brave is running
+---
 
-Close it cleanly before shutdown or reboot
+#### Update Utilities (TUI, integrated in Waybar)
+- `updates`
+- `updatesAll`
 
-Allow Brave to restore all tabs automatically on next startup
-(no manual “Restore Pages” prompt)
+Provide a simple TUI wrapper around `yay -Syu`:
+- Clears package lists before upgrading
+- Reduces friction compared to manual command execution
+- Fully optional and removable
 
-This avoids session corruption and improves continuity.
+This makes system updates fast while keeping full control.
 
-Update Utilities (TUI)
+---
 
-updates
+### Theming System
+Themes are modular and fully reproducible.
 
-updatesAll
+#### Creating a New Theme
+- Copy an existing theme directory
+- Rename it and update the color settings for each app to maintain consistency (or not, depends on you, lol)
 
-These provide:
+**Goal:**  
+- No scattered config files  
+- No global overrides  
+- Everything traceable to one directory
 
-A simple TUI wrapper around yay -Syu
+---
 
-Clear package lists before upgrading
+### Disclaimers
+This project is intended to be run once per system.  
+It is **not** designed for repeated re-install automation.  
 
-Less friction than manual command execution
+However, the following scripts are idempotent (safe to run multiple times without breaking your system) and can be executed again if necessary:
+- `archkai.sh`
+- `enable.sh`
+- `install_apps.sh`
+- `links.sh`
 
-They are optional and removable.
+⚠️ Note: You should **not** re-run `0_install.sh`.  
+Once it has been executed and you start using `archkai.sh`, your system is considered fully set up for you.  
+Re-running the other scripts is optional, but in theory your system should remain stable and personalized after the initial setup.
 
-Theming System
+Rollbacks and snapshots are intentionally omitted.  
+You are expected to understand and own the system after installation.  
+**You can copy all folders and delete the repo afterward if desired.**
 
-Themes are modular and reproducible.
+I studied Omarchy in depth and learned a lot from its design.  
+This project is not a copy—it is my personal system built with control and understanding in mind.  
+While you may notice similarities, all credit for inspiration goes to the original (*and amazing*) Omarchy engineering.  
 
-Creating a New Theme
+---
 
-Copy an existing theme directory
+### Project Status
+- Current version: 1.0  
+- Actively evolving  
+- Features added incrementally and deliberately  
+- Stability prioritized over novelty
 
-Rename it
+---
 
-Modify:
+## Who This Is For
+- Users who want to understand their system  
+- Developers who prefer transparency over abstraction  
+- Arch users who want structure without losing control  
+- Anyone who believes a system should be theirs
 
-Colors
+---
 
-GTK settings
+## Final Notes
 
-Window manager config
+### **This. Is. Yours.**
+You. Own. Your. System.  
+This is a system ownership framework, not a general-purpose installer.
 
-Terminal theme
-
-Register the theme in the theme loader script
-
-The goal is:
-
-No scattered config files
-
-No global overrides
-
-Everything traceable to one directory
-
-Disclaimers
-
-This project is intended to be run once per system
-
-It is not designed for repeated re-install automation
-
-Rollbacks and snapshots are intentionally omitted
-
-You are expected to understand and own the system after installation
-
-This is not a general-purpose installer.
-This is a system ownership framework.
-
-Project Status
-
-Current version: 1.0
-
-Actively evolving
-
-Features added incrementally and deliberately
-
-Stability prioritized over novelty
-
-Who This Is For
-
-Users who want to understand their system
-
-Developers who prefer transparency over abstraction
-
-Arch users who want structure without losing control
-
-Anyone who believes a system should be theirs
-
-Final Notes
+#### So be aware: "With great power comes great responsibility."
 
 After installation:
+- This repository becomes your system reference  
+- You are encouraged to fork it, remove it, or evolve it into something entirely your own  
 
-This repository becomes your system reference
-
-You are encouraged to fork it
-
-Remove this repo
-
-Or evolve it into something entirely your own
-
-That is the intended outcome.
+### **That is the intended outcome.**
