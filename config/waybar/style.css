@@ -76,6 +76,12 @@
   font-size: 15px;
 }
 
+#custom-docker {
+  font-size: 20px;
+  margin-right: 0;
+  padding-right: 0;
+}
+
 #custom-updates,
 #pulseaudio {
   margin-right: 9px;
