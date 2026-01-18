@@ -63,7 +63,7 @@
   },
 
   "custom/docker": {
-    "format": "  ",
+    "format": " ",
     "tooltip-format": "Execute LazyDocker",
     "on-click": "launch-tui docker lazydocker"
   },
