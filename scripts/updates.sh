@@ -5,7 +5,7 @@ instance_count=$(ps aux | grep -f "$script_name" | grep -v grep | grep -v $$ | w
 if [ "$instance_count" -gt 1 ]; then sleep 1; fi
 
 official=$(checkupdates 2>/dev/null | grep -v '^==' | wc -l)
-aur=$(yay -qua 2>/dev/null | grep -- '->' | wc -l)
+aur=$(yay -Qua 2>/dev/null | grep -F "->" | grep -v "Flagged Out Of Date" | wc -l)
 
 total=$(( official + aur ))
 

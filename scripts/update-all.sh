@@ -15,7 +15,7 @@ fi
 
 echo -e "\n-- ${ACCENT}AUR UPDATES${RESET} --"
 
-updates_aur=$(yay -qua 2>/dev/null | grep "\->")
+updates_aur=$(yay -qua 2>/dev/null | grep '\-\>' | grep -v "Flagged Out Of Date")
 
 if [[ -n "$updates_aur" ]]; then
     echo "$updates_aur" | nl -s ". " -w 2
