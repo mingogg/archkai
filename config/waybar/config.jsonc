@@ -7,6 +7,7 @@
   "modules-center": ["hyprland/workspaces"],
   "modules-right": [
     "custom/updates",
+    "custom/docker",
     "bluetooth",
     "network",
     "pulseaudio",
@@ -59,6 +60,12 @@
     "exec": "updates",
     "on-click": "launch-tui update update-all",
     "restart-interval": 300
+  },
+
+  "custom/docker": {
+    "format": "  ",
+    "tooltip-format": "Execute LazyDocker",
+    "on-click": "launch-tui docker lazydocker"
   },
 
   "clock": {
