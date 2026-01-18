@@ -46,41 +46,83 @@ Each stage is intentionally separated so you can:
 
 ## Installation Steps
 
-### Step 1 — Boot the Arch ISO
-- Download the official Arch Linux ISO
-- Boot it in real hardware or a VM
-- Ensure you have network connectivity
+### 1. Create Partitions
+#### Small guide example — adapt it to your needs.
 
-### Step 2 — Manual Preparation (Before Executable 0)
-You are expected to:
-- Partition disks
-- Format filesystems
-- Mount /mnt
+- Execute `cfdisk`
+- Select partition table type: `gpt`
 
-#### This project intentionally does not abstract this step.
+##### Select the disk you want to partition
+- Create a new partition of `512M`
+- Set type as `EFI System`
 
-### Step 3 — Run Executable 0 (System Initialization)
-Executable 0:
-Sets up system structure
-Applies base configuration
-Prepares the environment for user-space bootstrap
-Example:
-bash executable-0.sh
+##### Select the disk again
+- Select the remaining space (or the size you prefer)
+- Set type as `Linux filesystem`
+- Write changes and quit
 
-At this stage:
-No heavy applications are installed
-The system remains minimal
-Errors are easier to trace
+---
 
-Step 4 — Exit ISO and Reboot
-exit
-reboot
+### 2. Format Partitions
+**⚠️ WARNING: This will erase all data on the selected partitions**
 
+Assume the following mapping:
+- `EFI  → /dev/sda1`
+- `ROOT → /dev/sda2`
 
-Remove the ISO and boot into your new Arch system.
-Step 5 — Run Bootstrap (User Environment)
-Once logged into the system:
-bash bootstrap.sh
+#### Execute:
+- `mkfs.fat -F32 /dev/sda1`
+- `mkfs.ext4 /dev/sda2`
+
+---
+
+### 3. Mount Partitions
+Using the same partition examples as above, execute:
+
+- `mount /dev/sda2 /mnt`
+- `mkdir -p /mnt/boot`
+- `mount /dev/sda1 /mnt/boot`
+
+---
+
+### 4. Clone the Repository from the Live ISO
+
+#### Execute the following commands:
+- `pacman -Sy`
+- `git clone https://github.com/mingogg/archkai`
+- `cd archkai/bootstrap`
+- `./0_install.sh`
+
+#### During execution, you will be prompted for:
+- `HOSTNAME`
+- `USERNAME`
+- **ROOT** password (with confirmation)
+- **USER** password (with confirmation)
+
+#### If the installation succeeds, you will see:
+**LEVEL 0 PROCESS IS FINISHED**  
+**Host set as:** *HOSTNAME*  
+**User set as:** *USERNAME*  
+**You can now execute:** `umount -R /mnt && reboot`
+
+Follow the instruction above.  
+After rebooting, you will be able to log in with your user.
+
+---
+
+### 5. Post-Install (User Environment Setup)
+
+After logging in, execute the following commands one last time:
+
+- `git clone https://github.com/mingogg/archkai`
+- `cd archkai/bootstrap`
+- `./archkai.sh`
+
+##### Note:
+You will be asked for your user password multiple times during this process.
+
+Once the installation finishes, reboot and enjoy your new system.
+
 
 Bootstrap handles:
 Application installation
