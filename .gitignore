@@ -1,2 +1,3 @@
 theme/current
-ow/
+workspaces/ow/*
+!workspaces/ow/.gitkeep
