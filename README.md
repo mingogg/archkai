@@ -211,7 +211,8 @@ However, the following scripts are idempotent (safe to run multiple times withou
 
 ⚠️ Note: You should **not** re-run `0_install.sh`.  
 Once it has been executed and you start using `archkai.sh`, your system is considered fully set up for you.  
-Re-running the other scripts is optional, but in theory your system should remain stable and personalized after the initial setup.
+Re-running the other scripts is optional, but in theory your system should remain stable and personalized after the initial setup.  
+If needed, just re-run `archkai.sh` to install missing packages.
 
 Rollbacks and snapshots are intentionally omitted.  
 You are expected to understand and own the system after installation.  
