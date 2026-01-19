@@ -53,11 +53,10 @@ arch-chroot /mnt /bin/bash <<EOF
 ln -sf /usr/share/zoneinfo/America/Asuncion /etc/localtime
 hwclock --systohc
 
-if ! grep -q "en_US.UTF-8 UTF-8" /etc/locale.gen; then
-  echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-fi
+sed -i 's/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
+locale -a | grep -qi en_US.utf8 || echo "WARNING: en_US.UTF-8 locale was not generated"
 
 # Setting the host name
 echo "$HOSTNAME" > /etc/hostname
