@@ -106,7 +106,7 @@ Using the same partition examples as above, execute:
 **You can now execute:** `umount -R /mnt && reboot`
 
 Follow the instruction above.  
-After rebooting, you will be able to log in with your user.
+After rebooting without the ISO, you will be able to log in with your user.
 
 ---
 
