@@ -28,6 +28,7 @@ echo ""
 [[ "$ROOT_PASS" != "$ROOT_PASS_CONFIRM" ]] && { echo "Passwords do not match"; exit 1; }
 validate_passwd "$ROOT_PASS" || { echo "Password must be at least 2 characters long"; exit 1; }
 
+echo ""
 read -s -p "Introduce USER password: " USER_PASS
 echo ""
 read -s -p "Confirm USER password: " USER_PASS_CONFIRM
