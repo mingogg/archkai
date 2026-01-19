@@ -83,12 +83,14 @@ Using the same partition examples as above, execute:
 - ```mkdir -p /mnt/boot```
 - ```mount /dev/sda1 /mnt/boot```
 
+###### Note: You need to activate your internet connection at this point.
 ---
 
 ### 4. Clone the Repository from the Live ISO
 
 #### Execute the following commands:
 - ```pacman -Sy```
+- ```pacman -S git```
 - ```git clone https://github.com/mingogg/archkai```
 - ```cd archkai/bootstrap```
 - ```./0_install.sh```
@@ -113,6 +115,8 @@ After rebooting without the ISO, you will be able to log in with your user.
 ### 5. Post-Install (User Environment Setup)
 
 After logging in, execute the following commands one last time:
+
+###### Note: You need to activate your internet connection at this point.
 
 - ```git clone https://github.com/mingogg/archkai```
 - ```cd archkai/bootstrap```
