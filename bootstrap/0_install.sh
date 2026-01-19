@@ -1,9 +1,19 @@
 #!/bin/bash
 set -e
-echo ""
+
+validate_passwd() {
+  local pass="$1"
+
+  # Is not and empty password
+  if [[ -z "$pass" || ${#pass} -lt 2 ]]; then
+    return 1
+  fi
+
+  return 0
+}
+
 echo ""
 read -p "Introduce the HOST name (f.e., MyArch): " HOSTNAME
-echo ""
 echo ""
 read -p "Introduce the USER name(f.e., MyName): " USERNAME
 
@@ -11,20 +21,19 @@ HOSTNAME=${HOSTNAME:-emptyHostName}
 USERNAME=${USERNAME:-emptyUserName}
 
 echo ""
-echo ""
 read -s -p "Introduce ROOT password: " ROOT_PASS
 echo ""
 read -s -p "Confirm ROOT password: " ROOT_PASS_CONFIRM
 echo ""
-echo ""
-[[ "$ROOT_PASS" != "$ROOT_PASS_CONFIRM" ]] && exit 1
+[[ "$ROOT_PASS" != "$ROOT_PASS_CONFIRM" ]] && { echo "Passwords do not match"; exit 1; }
+validate_passwd "$ROOT_PASS" || { echo "Password must be at least 2 characters long"; exit 1; }
 
 read -s -p "Introduce USER password: " USER_PASS
 echo ""
 read -s -p "Confirm USER password: " USER_PASS_CONFIRM
 echo ""
-echo ""
-[[ "$USER_PASS" != "$USER_PASS_CONFIRM" ]] && exit 1
+[[ "$USER_PASS" != "$USER_PASS_CONFIRM" ]] && { echo "Passwords do not match"; exit 1; }
+validate_passwd "$USER_PASS" || { echo "Password must be at least 2 characters long"; exit 1; }
 
 echo "Syncing clock..."
 timedatectl set-ntp true
