@@ -9,7 +9,7 @@ fi
 # Aliases to open files, directories & workspaces
 alias of=openFile
 alias od=openDirectory
-alias ow=~/dev/scripts/ws_launcher.sh
+alias ow=openWorkspace
 alias reboot=safeBraveReboot
 alias poweroff=safeBravePoweroff
 

@@ -1,5 +1,4 @@
 # ARCH KAI
-**Version: 1.0**
 
 A minimal, opinionated Arch Linux installer focused on **full system ownership, transparency, and control**, without sacrificing usability or visual consistency and quality.
 
@@ -158,6 +157,9 @@ This project includes several helper functions designed around real usage.
 - `of` → OpenFile: same as OpenDirectory but for files.  
   **Note:** searches from the *root of your current folder*.  
   Best used from `/home` for predictable behavior.
+- `ow` → OpenWorkspace: launches predefined workspace scripts located in `~/workspaces/ow/`.  
+  It lists all scripts with the `ws_` prefix and lets you select one to execute in a new terminal.  
+  **Note:** for details on script structure, naming, and examples, see the `~/workspaces/` folder and the included `ws_example.sh` and `tmux_example.sh` files.
 
 ---
 
@@ -226,7 +228,7 @@ While you may notice similarities, all credit for inspiration goes to the origin
 ---
 
 ### Project Status
-- Current version: 1.0  
+- Current version: 1.0.1  
 - Actively evolving  
 - Features added incrementally and deliberately  
 - Stability prioritized over novelty

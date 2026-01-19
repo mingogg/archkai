@@ -91,6 +91,9 @@ safe_link "$DOTFILES/config/tmux" "$CONFIG/tmux"
 # alacritty
 safe_link "$DOTFILES/config/alacritty" "$CONFIG/alacritty"
 
+# Workspaces
+safe_link "$DOTFILES/workspaces" "$HOME/workspaces"
+
 # scripts executables in path
 mkdir -p "$HOME/.local/bin"
 for script in ~/archkai/scripts/*.sh; do
