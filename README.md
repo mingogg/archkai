@@ -202,24 +202,32 @@ Themes are modular and fully reproducible.
 ---
 
 ### Disclaimers
-This project is intended to be run once per system.  
-It is **not** designed for repeated re-install automation.  
 
-However, the following scripts are idempotent (safe to run multiple times without breaking your system) and can be executed again if necessary:
+##### Scripts
+
+This project is intended to be executed **once per system**.  
+The following scripts are **idempotent** and safe to re-run if needed:
 - `archkai.sh`
 - `enable.sh`
 - `install_apps.sh`
 - `links.sh`
 
-⚠️ Note: You should **not** re-run `0_install.sh`.  
-Once it has been executed and you start using `archkai.sh`, your system is considered fully set up for you.  
-Re-running the other scripts is optional, but in theory your system should remain stable and personalized after the initial setup.  
+⚠️ `0_install.sh` must **not** be re-run.  
+It is intended to run **once during base installation**. Re-executing it on an existing system may overwrite user accounts, configuration files, bootloader settings, and mount points, potentially breaking the system.
 
-If needed, just re-run `archkai.sh` to install missing packages.
+Once the base installation is complete and you start using `archkai.sh`, the system is considered fully set up.
 
-Rollbacks and snapshots are intentionally omitted.  
-You are expected to understand and own the system after installation.  
-**You can copy all folders and delete the repo afterward if desired.**
+From that point forward, the system is yours to understand, maintain, and modify.  
+Re-running `archkai.sh` is only intended to install missing packages, not to reset the system.
+
+##### Localization defaults
+
+This system is configured with predefined localization settings.
+Timezone is set to America/Asuncion as this is my timezone, and the default locale is en_US.UTF-8.
+
+If your region or language differs, you are expected to adjust these settings manually after installation.
+
+##### Inspiration
 
 I studied Omarchy in depth and learned a lot from its design.  
 This project is not a copy—it is my personal system built with control and understanding in mind.  
@@ -228,7 +236,7 @@ While you may notice similarities, all credit for inspiration goes to the origin
 ---
 
 ### Project Status
-- Current version: 1.0.1  
+- Current version: 1.0.2  
 - Actively evolving  
 - Features added incrementally and deliberately  
 - Stability prioritized over novelty
