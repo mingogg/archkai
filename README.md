@@ -126,6 +126,8 @@ You will be asked for your user password multiple times during this process.
 
 Once the installation finishes, reboot and enjoy your new system.
 
+###### Note: After rebooting, the Ly login manager may default to 'Hyprland (uwsm-managed)'. Please select 'Hyprland' manually the first time.
+
 ### Bootstrap Handles
 ##### Application installation | Desktop setup | Themes | Utilities | Optional helpers
 
@@ -236,7 +238,7 @@ While you may notice similarities, all credit for inspiration goes to the origin
 ---
 
 ### Project Status
-- Current version: 1.0.3  
+- Current version: 1.0.4  
 - Actively evolving  
 - Features added incrementally and deliberately  
 - Stability prioritized over novelty
