@@ -23,6 +23,8 @@ SYSTEM_PKGS=(
   hyprland                        # tiling window manager (u know already)
   networkmanager                  # network connectivity
   pipewire                        # audio/video engine
+  pipewire-pulse                  # PulseAudio emulator
+  pipewire-alsa                   # connects ALSA to PipeWire
   wireplumber                     # audio session manager
   xdg-desktop-portal              # apps ↔ system bridge
   xdg-desktop-portal-hyprland     # Wayland portal (Hyprland)

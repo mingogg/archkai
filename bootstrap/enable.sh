@@ -28,5 +28,10 @@ sudo systemctl enable ly@tty1.service
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.nautilus.preferences show-hidden-files true
 
+# Audio setup
+systemctl --user daemon-reload
+systemctl --user enable --now pipewire pipewire-pulse wireplumber
+systemctl --user restart pipewire pipewire-pulse wireplumber
+
 # Re-launch apps to apply theme for the first time
 relaunch-apps
