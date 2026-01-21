@@ -30,6 +30,7 @@ SYSTEM_PKGS=(
   xdg-desktop-portal-hyprland     # Wayland portal (Hyprland)
   base-devel                      # build tools (yay)
   git                             # clone PKGBUILDs
+  noto-fonts-emoji                # emoji render
   ttf-nerd-fonts-symbols          # symbols render
   ttf-jetbrains-mono-nerd         # system font
   adobe-source-han-sans-jp-fonts  # japanese symbols for the matrix effect in screensaver
