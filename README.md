@@ -229,6 +229,14 @@ Timezone is set to America/Asuncion as this is my timezone, and the default loca
 
 If your region or language differs, you are expected to adjust these settings manually after installation.
 
+##### Graphics drivers
+This system does not automatically install graphics drivers.
+Depending on your GPU, you may need to install proprietary or open-source drivers manually.
+
+⚠️ For example, on my system I had to install NVIDIA drivers (`nvidia`, `nvidia-utils`, etc.).
+Other GPUs (AMD, Intel) may require different packages or configuration.
+Please consult your hardware documentation to ensure proper setup.
+
 ##### Inspiration
 
 I studied Omarchy in depth and learned a lot from its design.  
