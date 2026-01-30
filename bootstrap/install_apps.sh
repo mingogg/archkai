@@ -78,6 +78,7 @@ APPS_PKGS=(
   mako                # notification daemon
   waybar              # status bar
   swaybg              # wallpaper manager
+  libreoffice-still   # open source office suite
 )
 
 sudo pacman -S --needed --noconfirm "${APPS_PKGS[@]}"
