@@ -98,6 +98,11 @@
   font-size: 14px;
 }
 
+#clock {
+  font-family: "JetBrains Mono Nerd Font";
+  font-weight: 900; /* más grueso que normal */
+}
+
 .hidden {
   opacity: 0;
 }
