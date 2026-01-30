@@ -90,7 +90,7 @@
   "pulseaudio": {
     "format": "{icon}",
     "on-click": "launch-tui audio wiremix",
-    "on-click-right": "pamixer -t",
+    "on-click-right": "wpctl set-mute @DEFAULT_SINK@ toggle",
     "tooltip-format": "Volume: {volume}%",
     "scroll-step": 5,
     "format-muted": "",
