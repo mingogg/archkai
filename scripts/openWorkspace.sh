@@ -22,7 +22,6 @@ selected=$(printf "%s\n" "${display[@]}" | walker -d -p "Workspaces")
 
 [ -z "$selected" ] && exit 0
 
-# Ejecutar script seleccionado
 for i in "${!display[@]}"; do
   if [[ "${display[$i]}" == "$selected" ]]; then
     bash "${real[$i]}" &
