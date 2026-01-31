@@ -248,7 +248,7 @@ While you may notice similarities, all credit for inspiration goes to the origin
 ---
 
 ### Project Status
-- Current version: 1.0.8  
+- Current version: 1.1.8  
 - Actively evolving  
 - Features added incrementally and deliberately  
 - Stability prioritized over novelty
