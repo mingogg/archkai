@@ -13,6 +13,7 @@ alias ow=openWorkspace
 alias reboot=safeBraveReboot
 alias poweroff=safeBravePoweroff
 alias gs='git status'
+alias gp='git push'
 
 PS1="\n[\[${RESET}\]\u@\h \[${FG}\]\w\[${RESET}\]\$(parse_git_info)\[${RESET}\]]\n\[${PRIMARY}\] 󰣇 \[${RESET}\] "
 
