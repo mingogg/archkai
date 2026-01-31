@@ -11,7 +11,7 @@ source ~/.bashrc
 # Wallpaper
 pkill swaybg
 sleep 0.1
-nohup swaybg -i "$CURRENT/wallpaper/wpp.jpg" -m fill >/dev/null 2>&1 &
+nohup swaybg -i "$CURRENT/wpp.jpg" -m fill >/dev/null 2>&1 &
 disown
 
 # Waybar

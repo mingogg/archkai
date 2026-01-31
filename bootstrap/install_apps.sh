@@ -39,6 +39,7 @@ SYSTEM_PKGS=(
   python                          # python 3 interpreter
   python-pip                      # python pkg manager
   python-pipx                     # python pkg manager for isolated Python apps (f.e., tte)
+  less                            # command-line terminal pager
 )
 
 sudo pacman -S --needed --noconfirm "${SYSTEM_PKGS[@]}"

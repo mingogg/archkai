@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 
 # Ensures there is a backup in case the folders exists, if not, creates the symlink to the repo
+safe_copy(){
+    local target="$1"
+    local dest="$2"
+
+    if [ -e "$dest" ]; then
+        # Hacer backup con timestamp
+        mv "$dest" "${dest}.backup.$(date +%s)"
+    fi
+
+    cp -r "$target" "$dest"
+}
+
 safe_link(){
   local target="$1"
   local link="$2"
@@ -45,50 +57,45 @@ echo -e "${BLUE}===================================${RESET}\n"
 mkdir -p "$CONFIG"
 
 # Create the Theme system
-safe_link "$DOTFILES/theme" "$CONFIG/theme"
+safe_copy "$DOTFILES/theme" "$CONFIG/theme"
 safe_link "$DOTFILES/theme/default" "$CONFIG/theme/current"
 
 # Hyprland
-safe_link "$DOTFILES/config/hypr" "$CONFIG/hypr"
+safe_copy "$DOTFILES/config/hypr" "$CONFIG/hypr"
 
 # Nvim
-safe_link "$DOTFILES/config/nvim" "$CONFIG/nvim"
+safe_copy "$DOTFILES/config/nvim" "$CONFIG/nvim"
 
 # Waybar
-safe_link "$DOTFILES/config/waybar" "$CONFIG/waybar"
-safe_link "$CONFIG/theme/current/colors/colors.css" "$CONFIG/waybar/colors.css"
+safe_copy "$DOTFILES/config/waybar" "$CONFIG/waybar"
 
 # BASH
-safe_link "$DOTFILES/config/bashrc/.bashrc" "$HOME/.bashrc"
+safe_copy "$DOTFILES/config/bashrc/.bashrc" "$HOME/.bashrc"
 
 # Walker
-safe_link "$DOTFILES/config/walker" "$CONFIG/walker"
-safe_link "$CONFIG/theme/current/colors/colors.css" "$CONFIG/walker/themes/current/colors.css"
+safe_copy "$DOTFILES/config/walker" "$CONFIG/walker"
 
 # Ly (login manager)
 echo -e "${BLUE}[ INFO ] Linking login manager system files (sudo required)${RESET}"
-safe_link_root "$CONFIG/theme/current/ly/config.ini" "/etc/ly/config.ini"
-
-# Colors for themes
-safe_link "$CONFIG/theme/current/colors" "$CONFIG/colors"
+safe_link_root "$DOTFILES/config/ly/config.ini" "/etc/ly/config.ini"
 
 # Mako
-safe_link "$CONFIG/theme/current/mako" "$CONFIG/mako"
+safe_copy "$DOTFILES/config/mako" "$CONFIG/mako"
 
 # btop
-safe_link "$CONFIG/theme/current/btop" "$CONFIG/btop"
+safe_copy "$DOTFILES/config/btop" "$CONFIG/btop"
 
 # wiremix
-safe_link "$CONFIG/theme/current/wiremix" "$CONFIG/wiremix"
+safe_copy "$DOTFILES/config/wiremix" "$CONFIG/wiremix"
 
 # tmux
-safe_link "$DOTFILES/config/tmux" "$CONFIG/tmux"
+safe_copy "$DOTFILES/config/tmux" "$CONFIG/tmux"
 
 # alacritty
-safe_link "$DOTFILES/config/alacritty" "$CONFIG/alacritty"
+safe_copy "$DOTFILES/config/alacritty" "$CONFIG/alacritty"
 
 # Workspaces
-safe_link "$DOTFILES/workspaces" "$HOME/workspaces"
+safe_copy "$DOTFILES/workspaces" "$HOME/workspaces"
 
 # scripts executables in path
 mkdir -p "$HOME/.local/bin"
