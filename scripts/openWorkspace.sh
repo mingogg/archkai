@@ -1,35 +1,32 @@
-#!/bin/bash
-GREEN="\033[32m"
-RESET="\033[0m"
+#!/usr/bin/env bash
 
-SCRIPTS_DIR="$HOME/workspaces/ow"
-PATTERN="ws_*"
+PROJECTS_DIR="$HOME/workspaces"
 
-# Habilitar nullglob para que los patrones vacíos no aparezcan literal
 shopt -s nullglob
-scripts=( "$SCRIPTS_DIR"/$PATTERN )
-shopt -u nullglob  # opcional: deshabilitar nullglob después
+files=( "$PROJECTS_DIR"/*.sh )
+shopt -u nullglob
 
-if [ ${#scripts[@]} -eq 0 ]; then
-  echo "Scripts not found!"
-  exit 1
-fi
+[ ${#files[@]} -eq 0 ] && exit 0
 
-echo
-echo "Select the script to execute:"
-for i in "${!scripts[@]}"; do
-  printf "%d) ${GREEN}%s${RESET}\n" $((i+1)) "$(basename "${scripts[i]}")"
+display=()
+real=()
+
+for f in "${files[@]}"; do
+  name="${f##*/}"
+  name="${name%.sh}"
+  display+=("$(echo "$name" | xargs)")
+  real+=( "$f" )
 done
 
-read -p "Select index: " choice
+selected=$(printf "%s\n" "${display[@]}" | walker -d -p "Workspaces")
 
-if ! [[ "$choice" =~ ^[0-9]+$ ]] || [ "$choice" -lt 1 ] || [ "$choice" -gt ${#scripts[@]} ]; then
-  echo "Invalid selection"
-  exit 1
-fi
+[ -z "$selected" ] && exit 0
 
-selected_script="$(basename "${scripts[$((choice-1))]}")"
-execute_script="${scripts[$((choice-1))]}"
-echo
-echo -e "Executing: ${GREEN}$selected_script${RESET}"
-bash "$execute_script"
+# Ejecutar script seleccionado
+for i in "${!display[@]}"; do
+  if [[ "${display[$i]}" == "$selected" ]]; then
+    bash "${real[$i]}" &
+    disown
+    break
+  fi
+done
