@@ -151,7 +151,7 @@ You can add or remove packages freely.
 
 This project includes several helper functions designed around real usage.
 
-#### Aliases that simplify directory and file access
+#### Aliases and scripts that simplify directory and file access
 - `od` → OpenDirectory: searches for directories by partial match and opens them.  
   Example: `od kai` → opens `archKai` if found.  
   If multiple matches exist, you can select one via an index.  
@@ -159,9 +159,9 @@ This project includes several helper functions designed around real usage.
 - `of` → OpenFile: same as OpenDirectory but for files.  
   **Note:** searches from the *root of your current folder*.  
   Best used from `/home` for predictable behavior.
-- `ow` → OpenWorkspace: launches predefined workspace scripts located in `~/workspaces/ow/`.  
-  It lists all scripts with the `ws_` prefix and lets you select one to execute in a new terminal.  
-  **Note:** for details on script structure, naming, and examples, see the `~/workspaces/` folder and the included `ws_example.sh` and `tmux_example.sh` files.
+- OpenWorkspace: launches predefined workspace scripts located in `~/workspaces` using `ALT+O` binding.  
+  It lists all executable scripts in an interactive Walker menu, showing clean names without the `.sh` extension.  
+  Scripts can launch NVIM, TMUX sessions, Docker containers, backend/frontend environments, or any custom workflow commands.  
 
 ---
 
