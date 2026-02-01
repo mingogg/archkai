@@ -5,7 +5,7 @@ CURRENT_LINK="$HOME/.config/theme/current"
 CONFIG_DIR="$HOME/.config"
 
 selected_theme=$(
-    find "$THEMES_DIR" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' | walker -d -p "Select theme"
+    find "$THEMES_DIR" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' | sort | walker -d -p "Select theme"
 )
 
 [ -z "$selected_theme" ] && exit 0
@@ -69,7 +69,7 @@ if [ -f "$BASHRC" ]; then
   sed -i "s|^\(RESET_BASH=\)\".*\"|\1\"${RESET_BASH//\\/\\\\}\"|" "$BASHRC"
 fi
 
-UPDATES="$HOME/.local/updates-all"
+UPDATES="$HOME/.local/update-all"
 if [ -f "$UPDATES" ]; then
   sed -i "s|^\(PRIMARY_BASH=\)\".*\"|\1\"${PRIMARY_BASH//\\/\\\\}\"|" "$UPDATES"
   sed -i "s|^\(ACCENT_BASH=\)\".*\"|\1\"${ACCENT_BASH//\\/\\\\}\"|" "$UPDATES"
