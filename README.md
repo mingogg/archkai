@@ -250,7 +250,7 @@ While you may notice similarities, all credit for inspiration goes to the origin
 ---
 
 ### Project Status
-- Current version: 2.0.2  
+- Current version: 2.0.3  
 - Actively evolving  
 - Features added incrementally and deliberately  
 - Stability prioritized over novelty
