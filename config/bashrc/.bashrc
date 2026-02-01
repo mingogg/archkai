@@ -1,9 +1,13 @@
+PRIMARY_BASH="\e[38;2;255;255;255m"
+ACCENT_BASH="\e[38;2;230;230;230m"
+
+BG_BASH="\e[48;2;30;30;30m"
+FG_BASH="\e[38;2;138;138;141m"
+
+RESET_BASH="\e[0m"
+
 if [ -f ~/.local/bin/bash-functions ]; then
   source ~/.local/bin/bash-functions
-fi
-
-if [ -f ~/.config/theme/current/colors/bashColors.sh ]; then
-    source ~/.config/theme/current/colors/bashColors.sh
 fi
 
 # Aliases to open files, directories & workspaces
@@ -15,7 +19,7 @@ alias poweroff=safeBravePoweroff
 alias gs='git status'
 alias gp='git push'
 
-PS1="\n[\[${RESET}\]\u@\h \[${FG}\]\w\[${RESET}\]\$(parse_git_info)\[${RESET}\]]\n\[${PRIMARY}\] 󰣇 \[${RESET}\] "
+PS1="\n[\[${RESET_BASH}\]\u@\h \[${FG_BASH}\]\w\[${RESET_BASH}\]\$(parse_git_info)\[${RESET_BASH}\]]\n\[${PRIMARY_BASH}\] 󰣇 \[${RESET_BASH}\] "
 
 export PATH="$PATH:$HOME/.npm-global/bin"
 export PATH="$HOME/.local/bin:$PATH"

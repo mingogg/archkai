@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
-# Ensures there is a backup in case the folders exists, if not, creates the symlink to the repo
 safe_copy(){
     local target="$1"
     local dest="$2"
 
     if [ -e "$dest" ]; then
-        # Hacer backup con timestamp
         mv "$dest" "${dest}.backup.$(date +%s)"
     fi
 
@@ -41,10 +39,6 @@ BLUE="\033[34m"
 GREEN="\033[32m"
 RESET="\033[0m"
 
-# If there is a config folder that's needed from the dotfiles, it goes from
-# ~/gadearch/config to ~/.config/folder, else if there's a THEME needed, it goes from
-# ~/.config/theme/current/folder to ~/.config/folder
-
 REAL_HOME="$HOME"
 CONFIG="$REAL_HOME/.config"
 DOTFILES="$REAL_HOME/archkai"
@@ -53,10 +47,8 @@ echo -e "\n${BLUE}===================================${RESET}"
 echo -e "${GREEN}[ LINK ] applyin dotfiles symlinks${RESET}"
 echo -e "${BLUE}===================================${RESET}\n"
 
-# Ensure base config directory exists (single source of truth for all symlinks)
 mkdir -p "$CONFIG"
 
-# Create the Theme system
 safe_copy "$DOTFILES/theme" "$CONFIG/theme"
 safe_link "$DOTFILES/theme/default" "$CONFIG/theme/current"
 
@@ -76,8 +68,9 @@ safe_copy "$DOTFILES/config/bashrc/.bashrc" "$HOME/.bashrc"
 safe_copy "$DOTFILES/config/walker" "$CONFIG/walker"
 
 # Ly (login manager)
+safe_copy "$DOTFILES/config/ly" "$CONFIG/ly"
 echo -e "${BLUE}[ INFO ] Linking login manager system files (sudo required)${RESET}"
-safe_link_root "$DOTFILES/config/ly/config.ini" "/etc/ly/config.ini"
+safe_link_root "$CONFIG/ly/config.ini" "/etc/ly/config.ini"
 
 # Mako
 safe_copy "$DOTFILES/config/mako" "$CONFIG/mako"
@@ -102,5 +95,5 @@ mkdir -p "$HOME/.local/bin"
 for script in ~/archkai/scripts/*.sh; do
   [ -e "$script" ] || continue
   name=$(basename "$script" .sh)
-  ln -sf "$script" "$HOME/.local/bin/$name"
+  safe_copy "$script" "$HOME/.local/bin/$name"
 done

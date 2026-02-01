@@ -1,4 +1,5 @@
-@import "colors.css";
+@define-color primary #1793d1;
+@define-color foreground #8a8a8d;
 
 * {
   all: unset;

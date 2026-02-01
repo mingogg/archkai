@@ -6,7 +6,7 @@ theme = "current"
   [themes.current]
   # primary color
   selector = { fg = "#1793d1" }
-  tab_marker = {  fg = "#1793d1" }
+  tab_marker = { fg = "#1793d1" }
   volume_filled = { fg = "#1793d1" }
   meter_active = { fg = "#1793d1" }
   meter_center_active = { fg = "#1793d1" }
