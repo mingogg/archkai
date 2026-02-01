@@ -191,6 +191,9 @@ function openDirectory() {
 }
 
 # Git info in prompt
+PRIMARY_BASH="\e[38;2;23;147;209m"
+GIT_CLEAN_BASH="\e[38;2;245;176;65m"
+GIT_DIRTY_BASH="\e[38;2;217;102;102m"
 parse_git_info() {
     if git rev-parse --is-inside-work-tree &>/dev/null; then
         local branch status added modified untracked
@@ -205,11 +208,11 @@ parse_git_info() {
             modified=$(echo "$status" | grep '^ M' | wc -l)
             untracked=$(echo "$status" | grep '^??' | wc -l)
 
-            printf " | git:%s ${start}${GIT_DIRTY}${end}✘ ${start}${FG}${end}" "$branch"
+            printf " | git:%s ${start}${GIT_DIRTY_BASH}${end}✘ ${start}${FG}${end}" "$branch"
             [[ $modified -gt 0 ]] && printf " ~$modified"
             [[ $untracked -gt 0 ]] && printf " ?$untracked"
         else
-            printf " | git:%s ${start}${PRIMARY}${end}✔ ${start}${FG}${end}" "$branch"
+            printf " | git:%s ${start}${PRIMARY_BASH}${end}✔ ${start}${FG}${end}" "$branch"
         fi
     fi
 }

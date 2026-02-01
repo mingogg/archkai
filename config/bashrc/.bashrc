@@ -1,10 +1,10 @@
-PRIMARY_BASH="\e[38;2;255;255;255m"
-ACCENT_BASH="\e[38;2;230;230;230m"
+PRIMARY_BASH="\e[38;2;23;147;209m"
+ACCENT_BASH="\e[38;2;102;217;255m"
+
+RESET_BASH="\e[0m"
 
 BG_BASH="\e[48;2;30;30;30m"
 FG_BASH="\e[38;2;138;138;141m"
-
-RESET_BASH="\e[0m"
 
 if [ -f ~/.local/bin/bash-functions ]; then
   source ~/.local/bin/bash-functions

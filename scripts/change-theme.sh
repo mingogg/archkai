@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-THEMES_DIR="$HOME/archkai/theme"
+THEMES_DIR="$HOME/.config/theme"
 CURRENT_LINK="$HOME/.config/theme/current"
 CONFIG_DIR="$HOME/.config"
 
@@ -13,10 +13,6 @@ selected_theme=$(
 ln -sfn "$THEMES_DIR/$selected_theme" "$CURRENT_LINK"
 
 source "$CURRENT_LINK/colors.sh"
-
-# -----------------------------
-# Dynamic replacement of colors
-# -----------------------------
 
 WAYBAR_CONFIG="$CONFIG_DIR/waybar/style.css"
 if [ -f "$WAYBAR_CONFIG" ]; then
@@ -35,7 +31,6 @@ if [ -f "$HYPR_CONFIG" ]; then
     sed -i "s/^\s*col.border_inactive\s*=.*$/    col.border_inactive = $NEUTRAL_HYPR/" "$HYPR_CONFIG"
 fi
 
-# Ly
 LY_CONFIG="$CONFIG_DIR/ly/config.ini"
 if [ -f "$LY_CONFIG" ]; then
   sed -i "s|^\(cmatrix_fg\s*=\s*\).*|\1$MATRIX_FG|" "$LY_CONFIG"
@@ -72,8 +67,24 @@ if [ -f "$BASHRC" ]; then
   sed -i "s|^\(BG_BASH=\)\".*\"|\1\"${BG_BASH//\\/\\\\}\"|" "$BASHRC"
   sed -i "s|^\(FG_BASH=\)\".*\"|\1\"${FG_BASH//\\/\\\\}\"|" "$BASHRC"
   sed -i "s|^\(RESET_BASH=\)\".*\"|\1\"${RESET_BASH//\\/\\\\}\"|" "$BASHRC"
-  sed -i "s|^\(GIT_CLEAN_BASH=\)\".*\"|\1\"${GIT_CLEAN_BASH//\\/\\\\}\"|" "$BASHRC"
-  sed -i "s|^\(GIT_DIRTY_BASH=\)\".*\"|\1\"${GIT_DIRTY_BASH//\\/\\\\}\"|" "$BASHRC"
+fi
+
+UPDATES="$HOME/.local/updates-all"
+if [ -f "$UPDATES" ]; then
+  sed -i "s|^\(PRIMARY_BASH=\)\".*\"|\1\"${PRIMARY_BASH//\\/\\\\}\"|" "$UPDATES"
+  sed -i "s|^\(ACCENT_BASH=\)\".*\"|\1\"${ACCENT_BASH//\\/\\\\}\"|" "$UPDATES"
+  sed -i "s|^\(BG_BASH=\)\".*\"|\1\"${BG_BASH//\\/\\\\}\"|" "$UPDATES"
+  sed -i "s|^\(FG_BASH=\)\".*\"|\1\"${FG_BASH//\\/\\\\}\"|" "$UPDATES"
+  sed -i "s|^\(RESET_BASH=\)\".*\"|\1\"${RESET_BASH//\\/\\\\}\"|" "$UPDATES"
+  sed -i "s|^\(GIT_CLEAN_BASH=\)\".*\"|\1\"${GIT_CLEAN_BASH//\\/\\\\}\"|" "$UPDATES"
+  sed -i "s|^\(GIT_DIRTY_BASH=\)\".*\"|\1\"${GIT_DIRTY_BASH//\\/\\\\}\"|" "$UPDATES"
+fi
+
+GIT_PROMPT="$HOME/.local/bash-functions"
+if [ -f "$GIT_PROMPT" ]; then
+  sed -i "s|^\(PRIMARY_BASH=\)\".*\"|\1\"${PRIMARY_BASH//\\/\\\\}\"|" "$GIT_PROMPT"
+  sed -i "s|^\(GIT_CLEAN_BASH=\)\".*\"|\1\"${GIT_CLEAN_BASH//\\/\\\\}\"|" "$GIT_PROMPT"
+  sed -i "s|^\(GIT_DIRTY_BASH=\)\".*\"|\1\"${GIT_DIRTY_BASH//\\/\\\\}\"|" "$GIT_PROMPT"
 fi
 
 WALKER_CONFIG="$CONFIG_DIR/walker/themes/current/style.css"
@@ -81,5 +92,9 @@ if [ -f "$WALKER_CONFIG" ]; then
   sed -i "s|@define-color primary .*;|@define-color primary $PRIMARY_CSS|" "$WALKER_CONFIG"
   sed -i "s|@define-color foreground .*;|@define-color foreground $FOREGROUND_CSS|" "$WALKER_CONFIG"
 fi
+
+# Nautilus
+gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME"
+gsettings set org.gnome.desktop.interface icon-theme "$ICON_THEME"
 
 relaunch-apps
