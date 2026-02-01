@@ -24,7 +24,7 @@
     "format": "  ",
     "on-click": "menu",
     "on-click-right": "",
-    "tooltip-format": "Arch Menu\n\nSuper + Alt + Space"
+    "tooltip-format": "Arch Menu\n\nAlt + Backspace"
   },
 
   "hyprland/workspaces": {
