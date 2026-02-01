@@ -195,8 +195,10 @@ This makes system updates fast while keeping full control.
 Themes are modular and fully reproducible.
 
 #### Creating a New Theme
-- Copy an existing theme directory
-- Rename it and update the color settings for each app to maintain consistency (or not, depends on you, lol)
+- Copy an existing theme directory into `~/.config/theme`
+- Rename it and update the `color.sh` settings for each app to maintain consistency (or not, depends on you, lol)
+- To change the wallpaper, simply replace it with your own image named `wpp.jpg`
+- **Remember to keep these colors configs/variables intact.** The scripts use sed to modify the colors, which isn’t very robust, but it makes creating new themes easier. As long as you don’t modify the variables used by sed in `~/.local/change-theme`, everything should work fine and you can add your own configurations in every app without problems.
 
 **Goal:**  
 - No scattered config files  
@@ -248,7 +250,7 @@ While you may notice similarities, all credit for inspiration goes to the origin
 ---
 
 ### Project Status
-- Current version: 1.1.8  
+- Current version: 2.0.0  
 - Actively evolving  
 - Features added incrementally and deliberately  
 - Stability prioritized over novelty
