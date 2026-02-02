@@ -51,6 +51,10 @@ return {
 					cmd = { "pylsp" },
 					filetypes = { "python" },
 				},
+        clangd = {
+          cmd = { "clangd" },
+          filetypes = { "c", "cpp", "objc", "objcpp" }
+        },
 			}
 
 			-- Registrar cada servidor usando la nueva API
