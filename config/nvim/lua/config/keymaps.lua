@@ -22,11 +22,41 @@ vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
+---------- RUN PYTHON FILE ---------- 
 vim.keymap.set("n", "<leader>p", function()
 	vim.cmd("write")
 	local file = vim.fn.expand("%")
 	vim.cmd("split | terminal python3 " .. file)
 end, { desc = "Run current file with Python" })
+
+---------- SURROUND LIST WITH "" CMD ---------- 
+-- Mark your list with 'vi{' and <leader>' to add "" to the items inside
+-- Example: 
+-- if you have a: list = { a, b, c }
+-- use vi{ to select everything inside the {}
+-- then <leader> + '
+-- it will return: list = { "a", "b", "c" }
+vim.keymap.set("v", "<leader>'", function()
+  local start_line = vim.fn.line("'<")
+  local end_line = vim.fn.line("'>")
+  local lines = vim.api.nvim_buf_get_lines(0, start_line-1, end_line, false)
+
+  for i, line in ipairs(lines) do
+    lines[i] = line:gsub("{(.-)}", function(content)
+      local elems = {}
+      for item in content:gmatch("[^,]+") do
+        item = item:match("^%s*(.-)%s*$")
+        if not (item:match('^".*"$')) then
+          item = '"' .. item .. '"'
+        end
+        table.insert(elems, item)
+      end
+      return "{" .. table.concat(elems, ", ") .. "}"
+    end)
+  end
+
+  vim.api.nvim_buf_set_lines(0, start_line-1, end_line, false, lines)
+end, { silent = true, desc = 'Surround list with quotes safely' })
 
 ---------- START TELESCOPE CMDS ----------
 -- CMD TO SEARCH INSIDE .CONFIG FOLDER
