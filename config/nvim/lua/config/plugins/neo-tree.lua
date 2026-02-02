@@ -91,10 +91,10 @@ return {
           vim.api.nvim_set_current_win(neo_tree_win)
         else
           local current_dir = vim.fn.expand("%:p:h")
-          vim.cmd("Neotree reveal dir=" .. current_dir)
+          vim.cmd("Neotree reveal " .. vim.fn.fnameescape(current_dir))
         end
       end
-    end, { desc = "Toggle focus Neo-tree / previous window" })
+    end, { desc = "Toggle focus Neo-tree" })
   end
 }
 -- stylua: ignore end
