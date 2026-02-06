@@ -19,10 +19,8 @@ return {
 		"neovim/nvim-lspconfig",
 		lazy = false,
 		config = function()
-			-- Capabilities para nvim-cmp
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			-- Lista de servidores LSP
 			local servers = {
 				ts_ls = {
 					cmd = { "typescript-language-server", "--stdio" },
@@ -47,7 +45,7 @@ return {
 				solargraph = {
 					cmd = { "solargraph", "stdio" },
 				},
-				pylsp = { -- <-- Python LSP
+				pylsp = {
 					cmd = { "pylsp" },
 					filetypes = { "python" },
 				},
@@ -57,20 +55,17 @@ return {
         },
 			}
 
-			-- Registrar cada servidor usando la nueva API
 			for name, opts in pairs(servers) do
 				vim.lsp.config(name, vim.tbl_extend("force", { capabilities = capabilities }, opts))
 				vim.lsp.enable(name)
 			end
 
-			-- Keymaps LSP usando LspAttach
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(args)
 					local client = vim.lsp.get_client_by_id(args.data.client_id)
 					local buf = args.buf
 
-					-- Keymaps para buffers activos del LSP
 					local opts = { noremap = true, silent = true, buffer = buf }
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 					vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
