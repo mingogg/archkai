@@ -40,6 +40,7 @@ SYSTEM_PKGS=(
   python-pip                      # python pkg manager
   python-pipx                     # python pkg manager for isolated Python apps (f.e., tte)
   less                            # command-line terminal pager
+  mpv                             # simple video player
 )
 
 sudo pacman -S --needed --noconfirm "${SYSTEM_PKGS[@]}"
@@ -80,6 +81,8 @@ APPS_PKGS=(
   waybar              # status bar
   swaybg              # wallpaper manager
   libreoffice-still   # open source office suite
+  obs-studio          # streaming and window recording
+  gimp                # pic editor
 )
 
 sudo pacman -S --needed --noconfirm "${APPS_PKGS[@]}"
