@@ -1,4 +1,5 @@
 background-color=#1e1e1e
 
 # Mako uses the accent color for the border
-border-color=#66d9ff
+border-color=#1793d1
+font=JetBrains Mono 9.5
