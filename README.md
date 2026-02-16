@@ -1,5 +1,5 @@
 # ARCH KAI
-![Presentation GIF](https://i.imgur.com/vP8YgE0.gif)
+![Presentation GIF](https://i.imgur.com/7qQnVZo.gif)
 
 ## Description
 
