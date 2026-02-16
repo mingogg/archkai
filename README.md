@@ -1,4 +1,7 @@
 # ARCH KAI
+![Presentation GIF](https://i.imgur.com/kOmhmmY.gif)
+
+## Description
 
 A minimal, opinionated Arch Linux installer focused on **full system ownership, transparency, and control**, without sacrificing usability or visual consistency and quality.
 
