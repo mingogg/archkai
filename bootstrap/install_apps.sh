@@ -109,13 +109,15 @@ printIt "[ OK ] All essential packages installed"
 
 # APPS - essential user tools from AUR
 AUR_APPS_PKGS=(
-  lazydocker                # terminal UI for managing Docker containers
-  walker-bin                # app launcher
-  brave-bin                 # web browser
-  postman-bin               # testing APIs
-  xdg-terminal-exec         # utility (screensaver uses it)
-  yaru-colors-gtk-theme     # gtk colors for nautilus
-  yaru-colors-icon-theme    # gtk icons for nautilus
+  lazydocker                    # terminal UI for managing Docker containers
+  walker-bin                    # app launcher
+  elephant                      # walker backend
+  elephant-desktopapplications  # walker app backend
+  brave-bin                     # web browser
+  postman-bin                   # testing APIs
+  xdg-terminal-exec             # utility (screensaver uses it)
+  yaru-colors-gtk-theme         # gtk colors for nautilus
+  yaru-colors-icon-theme        # gtk icons for nautilus
 )
 
 AUR_MISSING_PKGS=()

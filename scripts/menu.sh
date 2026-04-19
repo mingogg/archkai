@@ -3,6 +3,7 @@
 export PATH="$HOME/.local/bin:$PATH"
 
 options=$(cat <<EOF
+    Apps
   ✦ Change Theme
   ⎋ Logout
   ↩ Reboot
@@ -15,6 +16,9 @@ selected=$(echo "$options" | walker -d -p "Search...")
 [ -z "$selected" ] && exit 0
 
 case "$selected" in
+  "  Apps")
+    walker --provider desktopapplications
+    ;;
   "✦ Change Theme")
     change-theme
     ;;

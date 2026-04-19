@@ -33,5 +33,9 @@ systemctl --user daemon-reload
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
 systemctl --user restart pipewire pipewire-pulse wireplumber
 
+# Elephant-Walker connection
+systemctl --user enable elephant
+systemctl --user start elephant
+
 # Re-launch apps to apply theme for the first time
 relaunch-apps
