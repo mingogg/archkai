@@ -2,4 +2,13 @@ background-color=#1e1e1e
 
 # Mako uses the accent color for the border
 border-color=#1793d1
-font=JetBrains Mono 9.5
+font=JetBrains Mono 10
+
+
+# General configurations, change as pleased
+anchor=top-right
+outer-margin=25,0
+border-size=1
+border-radius=7
+default-timeout=5000
+width=250
