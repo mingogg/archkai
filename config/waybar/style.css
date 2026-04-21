@@ -97,15 +97,15 @@
   font-size: 17px;
 }
 
-#pulseaudio,
-#clock {
+#pulseaudio {
   margin-left: 5px;
   font-size: 14px;
 }
 
 #clock {
   font-family: "JetBrains Mono Nerd Font";
-  font-weight: 900; /* más grueso que normal */
+  font-weight: 500;
+  font-size: 14.5px;
 }
 
 .hidden {
