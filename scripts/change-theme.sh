@@ -5,7 +5,7 @@ CURRENT_LINK="$HOME/.config/theme/current"
 CONFIG_DIR="$HOME/.config"
 
 selected_theme=$(
-    find "$THEMES_DIR" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' | sort | walker -d -p "Select theme"
+    find -L "$THEMES_DIR" -maxdepth 1 -mindepth 1 -type d ! -name current -printf '%f\n' | sort | walker -d -p "Select theme"
 )
 
 [ -z "$selected_theme" ] && exit 0
