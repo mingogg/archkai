@@ -1,11 +1,10 @@
 return {
-	{
-    "folke/tokyonight.nvim",
+  {
+    'D0nw0r/dark2026.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-      vim.g.tokyonight_style = "night"
-      vim.cmd.colorscheme("tokyonight")
+      vim.cmd.colorscheme 'dark2026'
     end,
-	},
+  }
 }

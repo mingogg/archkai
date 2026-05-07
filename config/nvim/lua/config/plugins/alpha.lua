@@ -26,7 +26,7 @@ return {
     }
 
     dashboard.section.header.opts.hl = "AlphaHeader"
-    vim.api.nvim_set_hl(0, "AlphaHeader", { fg = "#ffffff", bg = nil })
+    vim.api.nvim_set_hl(0, "AlphaHeader", { fg = "#46bdc6", bg = nil })
 
     alpha.setup(dashboard.opts)
   end,
