@@ -253,7 +253,7 @@ While you may notice similarities, all credit for inspiration goes to the origin
 ---
 
 ### Project Status
-- Current version: 2.0.7  
+- Current version: 2.0.8  
 - Actively evolving  
 - Features added incrementally and deliberately  
 - Stability prioritized over novelty
