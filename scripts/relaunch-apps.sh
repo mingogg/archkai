@@ -27,6 +27,3 @@ nohup mako >/dev/null 2>&1 &
 disown
 
 # Ly login manager service will update the theme after rebooting the system
-
-# Nautilus
-~/.config/theme/current/nautilus/apply.sh
