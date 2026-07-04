@@ -1,30 +1,26 @@
 #!/usr/bin/env bash
 PRIMARY_BASH="\e[38;2;23;147;209m"
 ACCENT_BASH="\e[38;2;102;217;255m"
-
 RESET_BASH="\e[0m"
-
-BG_BASH="\e[48;2;30;30;30m"
-FG_BASH="\e[38;2;138;138;141m"
-
-GIT_CLEAN_BASH="\e[38;2;245;176;65m"
 GIT_DIRTY_BASH="\e[38;2;217;102;102m"
 
 echo -e "${PRIMARY_BASH}---  INSTALLATION LIST  ---${RESET_BASH}"
+echo -e "${PRIMARY_BASH}--- Syncing repositories... ---${RESET_BASH}"
+sudo pacman -Sy --noconfirm > /dev/null
+
 echo -e "\n-- ${ACCENT_BASH}PACMAN UPDATES${RESET_BASH} --"
 
-sleep 1
-updates_pacman=$(checkupdates)
+updates_pacman=$(pacman -Qu)
 
 if [[ -n "$updates_pacman" ]]; then
     echo "$updates_pacman" | nl -s ". " -w 2
 else
-    echo "There is nothing to do"
+    echo "No pacman updates found"
 fi
 
 echo -e "\n-- ${ACCENT_BASH}AUR UPDATES${RESET_BASH} --"
 
-updates_aur=$(yay -qua 2>/dev/null | grep '\-\>' | grep -v "Flagged Out Of Date")
+updates_aur=$(yay -Qua 2>/dev/null | grep -- "->" | grep -v "Flagged Out Of Date")
 
 if [[ -n "$updates_aur" ]]; then
     echo "$updates_aur" | nl -s ". " -w 2
