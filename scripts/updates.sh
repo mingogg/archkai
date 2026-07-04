@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-script_name=$(basename "$0")
-instance_count=$(ps aux | grep -f "$script_name" | grep -v grep | grep -v $$ | wc -l)
-if [ "$instance_count" -gt 1 ]; then sleep 1; fi
+if pgrep -x "$(basename "$0")" | grep -v -w $$ > /dev/null; then
+    exit 0
+fi
 
-official=$(checkupdates 2>/dev/null | grep -v '^==' | wc -l)
+official=$(checkupdates 2>/dev/null | wc -l)
 aur=$(yay -Qua 2>/dev/null | grep -F "->" | grep -v "Flagged Out Of Date" | wc -l)
 
 total=$(( official + aur ))
@@ -14,8 +14,8 @@ css="updates"
 (( total > 100 )) && css="urgent"
 
 if (( total > 0 )); then
-    printf '{"text":"%d","alt":"%d","tooltip":"%d updates","class":"%s"}' \
+    printf '{"text":"%d","alt":"%d","tooltip":"%d updates","class":"%s"}\n' \
            "$total" "$total" "$total" "$css"
 else
-    printf '{"text":"0","alt":"0","tooltip":"no updates","class":"green"}'
+    printf '{"text":"0","alt":"0","tooltip":"no updates","class":"green"}\n'
 fi

@@ -59,7 +59,7 @@
     "return-type": "json",
     "exec": "updates",
     "on-click": "launch-tui update update-all",
-    "restart-interval": 300
+    "restart-interval": 3600
   },
 
   "custom/docker": {
