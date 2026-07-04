@@ -44,6 +44,7 @@ choice=${choice,,}
 if [[ "$choice" == "y" ]]; then
     echo -e "${PRIMARY_BASH}Initializing full installation...${RESET_BASH}"
     yay -Syu --noconfirm
+    rm -rf ~/.cache/yay/*
     echo -e "\n${PRIMARY_BASH}Installation finished, press enter to close...${RESET_BASH}"
     read -r
 else
