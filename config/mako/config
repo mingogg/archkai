@@ -2,13 +2,13 @@ background-color=#1e1e1e
 
 # Mako uses the accent color for the border
 border-color=#1793d1
-font=JetBrains Mono 10
-
+font=Fira Sans 10
 
 # General configurations, change as pleased
 anchor=top-right
-outer-margin=25,0
+#outer-margin=25,0
 border-size=1
-border-radius=7
+border-radius=4
 default-timeout=5000
 width=250
+format=<b>%s</b>\n\n%b # Adds a jumpline after title
