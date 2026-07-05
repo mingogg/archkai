@@ -103,9 +103,10 @@
 }
 
 #clock {
-  font-family: "JetBrains Mono Nerd Font";
+  font-family: "Fira Sans";
   font-weight: 500;
-  font-size: 14.5px;
+  font-size: 16px;
+  margin-right: 17px;
 }
 
 .hidden {
