@@ -41,6 +41,7 @@ SYSTEM_PKGS=(
   python-pipx                     # python pkg manager for isolated Python apps (f.e., tte)
   less                            # command-line terminal pager
   mpv                             # simple video player
+  fzf                             # fuzzy finder for git-cmds
 )
 
 sudo pacman -S --needed --noconfirm "${SYSTEM_PKGS[@]}"
@@ -136,4 +137,3 @@ if [ "${#AUR_MISSING_PKGS[@]}" -gt 0 ]; then
 else
   echo -e "\n${GREEN}[ AUR ] All AUR packages are already installed${RESET}"
 fi
-
