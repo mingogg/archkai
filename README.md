@@ -152,21 +152,26 @@ You can add or remove packages freely.
 
 ### Built-in Bash Utilities
 
-This project includes several helper functions designed around real usage.
+This project includes several helper functions designed around real usage, divided into system navigation and version control.
 
-#### Aliases and scripts that simplify directory and file access
-- `od` → OpenDirectory: searches for directories by partial match and opens them.  
+#### Navigation & Workflows
+- `od` → **OpenDirectory**: searches for directories by partial match and opens them.  
   Example: `od kai` → opens `archKai` if found.  
   If multiple matches exist, you can select one via an index.  
   **Note:** always searches from `/home`, so you can use it from anywhere.
-- `of` → OpenFile: same as OpenDirectory but for files.  
+- `of` → **OpenFile**: same as OpenDirectory but for files.  
   **Note:** searches from the *root of your current folder*.  
   Best used from `/home` for predictable behavior.
-- `gs` → executes `git status`.
-- `gp` → executes `git push`.
 - `OpenWorkspace` → launches predefined workspace scripts located in `~/workspaces` using `ALT+O` binding.  
   It lists all executable scripts in an interactive Walker menu, showing clean names without the `.sh` extension.  
   Scripts can launch NVIM, TMUX sessions, Docker containers, backend/frontend environments, or any custom workflow commands.  
+
+#### Git Utilities
+- `gs` → executes `git status`.
+- `gp` → executes `git push`.
+- `ga` → **Interactive Git Add**: checks for unstaged or modified files and opens an interactive `fzf` menu.  
+  Allows you to visually select exactly which files to stage.  
+  **Note:** You can select multiple files at once using `TAB` before pressing `ENTER`.
 
 ---
 
@@ -253,7 +258,7 @@ While you may notice similarities, all credit for inspiration goes to the origin
 ---
 
 ### Project Status
-- Current version: 2.0.8  
+- Current version: 2.0.9  
 - Actively evolving  
 - Features added incrementally and deliberately  
 - Stability prioritized over novelty
