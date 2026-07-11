@@ -49,32 +49,6 @@ function openFile() {
         return
     fi
 
-    local display_paths=()
-    for file in "${results[@]}"; do
-        rel_path=$(realpath --relative-to="$HOME" "$file")
-        IFS='/' read -ra parts <<< "$rel_path"
-        # Show at leasth the last two leves of path
-        display_path="${parts[-2]}/${parts[-1]}"
-        display_paths+=("$display_path")
-    done
-
-    local changed=1
-    while [[ $changed -eq 1 ]]; do
-        changed=0
-        for i in "${!display_paths[@]}"; do
-            count_same=$(printf "%s\n" "${display_paths[@]}" | grep -c "^${display_paths[$i]}$")
-            if [[ $count_same -gt 1 ]]; then
-                IFS='/' read -ra parts <<< "$(realpath --relative-to="$HOME" "${results[$i]}")"
-                if [ ${#parts[@]} -gt 2 ]; then
-                    display_paths[$i]="${parts[-3]}/${display_paths[$i]}"
-                    changed=1
-                else
-                    display_paths[$i]=$(realpath --relative-to="$HOME" "${results[$i]}")
-                fi
-            fi
-        done
-    done
-
     BLUE=$(tput setaf 4)
     GRAY=$(tput setaf 8)
     RESET=$(tput sgr0)
@@ -82,7 +56,9 @@ function openFile() {
     echo "  Found files:"
     echo
     for i in "${!results[@]}"; do
+        rel_path=$(realpath --relative-to="$PWD" "${results[$i]}")
         base_name=$(basename "${results[$i]}")
+
         if [[ $base_name == .* ]]; then
             symbol=" "
             color=$GRAY
@@ -90,7 +66,7 @@ function openFile() {
             symbol=" "
             color=$BLUE
         fi
-        printf " %2d) %b %s%b\n" "$i" "$color$symbol" "${display_paths[$i]}" "$RESET"
+        printf " %2d) %b %s%b\n" "$i" "$color$symbol" "./$rel_path" "$RESET"
     done
 
     echo
