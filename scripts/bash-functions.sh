@@ -193,12 +193,10 @@ function gitCommit() {
     fi
 
     if [[ $# -eq 0 ]]; then
-        echo "⛔ Error: Provide a commit message."
-        echo "Usage: gm My commit message here"
-        return 1
+        git commit
+    else
+        git commit -m "$*"
     fi
-    
-    git commit -m "$*"
 }
 
 # Git info in prompt
