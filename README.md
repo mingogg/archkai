@@ -172,6 +172,10 @@ This project includes several helper functions designed around real usage, divid
 - `ga` → **Interactive Git Add**: checks for unstaged or modified files and opens an interactive `fzf` menu.  
   Allows you to visually select exactly which files to stage.  
   **Note:** You can select multiple files at once using `TAB` before pressing `ENTER`.
+- `gc` → **Git Commit**:
+  If run without arguments, executes `git commit`.  
+  If run with arguments, it acts as `git commit -m`.  
+  Example: `gc 'feat(core): update & fix logic'` (use quotes if your message contains special symbols).
 
 ---
 
