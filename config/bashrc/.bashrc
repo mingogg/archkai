@@ -18,7 +18,8 @@ alias reboot=safeBraveReboot
 alias poweroff=safeBravePoweroff
 alias gs='git status'
 alias gp='git push'
-alias ga=git-cmds
+alias ga=gitAdd
+alias gc=gitCommit
 
 PS1="\n[\[${RESET_BASH}\]\u@\h \[${FG_BASH}\]\w\[${RESET_BASH}\]\$(parse_git_info)\[${RESET_BASH}\]]\n\[${PRIMARY_BASH}\] 󰣇 \[${RESET_BASH}\] "
 

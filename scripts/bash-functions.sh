@@ -166,6 +166,41 @@ function openDirectory() {
     fi
 }
 
+# Easy cmd to add staged files
+function gitAdd() {
+    if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        echo "⛔ Error: You are not in a Git repository."
+        return 1
+    fi
+
+    local unstaged_files
+    unstaged_files=$(git status -s | grep -E '^.[^ ]')
+
+    if [[ -z "$unstaged_files" ]]; then
+        echo "💤 Everything is added or your worktree is clean."
+        return 0
+    fi
+
+    echo "$unstaged_files" | fzf -m | awk '{print $2}' | xargs -r git add
+}
+
+
+# Easy cmds to commit in git
+function gitCommit() {
+    if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        echo "⛔ Error: You are not in a Git repository."
+        return 1
+    fi
+
+    if [[ $# -eq 0 ]]; then
+        echo "⛔ Error: Provide a commit message."
+        echo "Usage: gm My commit message here"
+        return 1
+    fi
+    
+    git commit -m "$*"
+}
+
 # Git info in prompt
 PRIMARY_BASH="\e[38;2;23;147;209m"
 GIT_CLEAN_BASH="\e[38;2;245;176;65m"
