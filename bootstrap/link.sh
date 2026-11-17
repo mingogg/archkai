@@ -50,7 +50,7 @@ echo -e "${BLUE}===================================${RESET}\n"
 mkdir -p "$CONFIG"
 
 safe_copy "$DOTFILES/theme" "$CONFIG/theme"
-safe_link "$DOTFILES/theme/default" "$CONFIG/theme/current"
+safe_link "$CONFIG/theme/1. Default" "$CONFIG/theme/current"
 
 # Hyprland
 safe_copy "$DOTFILES/config/hypr" "$CONFIG/hypr"
